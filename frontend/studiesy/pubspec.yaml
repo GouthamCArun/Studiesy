@@ -44,6 +44,7 @@ dependencies:
   google_fonts: ^6.1.0
   avatar_glow: ^2.0.2
   speech_to_text: ^6.3.0
+  livespeechtotext: ^1.0.9
 
 dev_dependencies:
   flutter_test:

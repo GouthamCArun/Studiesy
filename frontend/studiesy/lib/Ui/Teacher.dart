@@ -1,6 +1,6 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
-import 'package:speech_to_text/speech_to_text.dart';
+import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 class TeacherScreen extends StatefulWidget {
   const TeacherScreen({super.key});
@@ -13,7 +13,8 @@ class _TeacherScreenState extends State<TeacherScreen> {
   @override
   var islistening = false;
   var text = "Press the button and start speaking";
-  SpeechToText speech = SpeechToText();
+  stt.SpeechToText speech = stt.SpeechToText();
+
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: AvatarGlow(
@@ -32,6 +33,7 @@ class _TeacherScreenState extends State<TeacherScreen> {
             });
             if (islistening) {
               var available = await speech.initialize();
+
               print("available");
               if (available) {
                 speech.listen(
