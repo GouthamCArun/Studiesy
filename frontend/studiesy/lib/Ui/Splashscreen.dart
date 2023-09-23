@@ -25,10 +25,11 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(color: Color(0xFFFFCA2D)),
+        decoration:
+            const BoxDecoration(color: Color.fromARGB(255, 248, 248, 248)),
         child: Center(
-          child: Image.network(
-            'https://img.icons8.com/fluency/48/google-logo.png',
+          child: Image.asset(
+            'assets/Studiesy-logos_black.png',
             width: 300,
           ),
         ),
