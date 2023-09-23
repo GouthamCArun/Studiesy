@@ -22,7 +22,16 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(color: Color(0xFFFFFCA9)),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color.fromARGB(248, 249, 163, 255),
+              Color.fromARGB(255, 255, 251, 238),
+            ],
+          ),
+        ),
         child: Center(
           child: Image.asset(
             'assets/Studiesy-logos_black.png',
@@ -39,14 +48,14 @@ class _SplashScreenState extends State<SplashScreen> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => const NavigationPage(),
+            builder: (context) => const Authentication(),
           ),
         );
       } else {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => const TeacherScreen(),
+            builder: (context) => const Authentication(),
           ),
         );
       }

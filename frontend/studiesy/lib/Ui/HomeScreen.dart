@@ -35,136 +35,147 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 251, 247, 244),
-      body: SafeArea(
-          child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.only(top: 3.h, left: 5.w),
-            child: Text(
-              'Hey Rafe👋',
-              style: GoogleFonts.poppins(
-                textStyle: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 22.sp,
-                  color: const Color.fromARGB(255, 57, 2, 78),
-                ),
-              ),
-            ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color.fromARGB(248, 249, 163, 255),
+              Color.fromARGB(255, 255, 251, 238),
+            ],
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 0.5.h),
-            child: Text(
-              'What do you want to learn today?',
-              style: GoogleFonts.poppins(
-                textStyle: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 12.sp,
-                  color: const Color.fromARGB(255, 128, 128, 128),
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 2.5.h),
-            child: SearchBar(
-              hintText: 'Search',
-              leading: Icon(
-                Icons.search,
-                size: 25.sp,
-                color: Colors.grey,
-              ),
-              hintStyle: MaterialStatePropertyAll(
-                GoogleFonts.poppins(
-                  textStyle: const TextStyle(color: Colors.grey),
-                ),
-              ),
-              elevation: const MaterialStatePropertyAll(0),
-              backgroundColor: const MaterialStatePropertyAll(
-                Color.fromRGBO(220, 224, 255, 0.843),
-              ),
-              shape: MaterialStatePropertyAll(
-                ContinuousRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(20.sp),
+        ),
+        child: SafeArea(
+            child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: 3.h, left: 5.w),
+              child: Text(
+                'Hey Rafe👋',
+                style: GoogleFonts.poppins(
+                  textStyle: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 22.sp,
+                    color: const Color.fromARGB(255, 57, 2, 78),
                   ),
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 0.5.h),
-            child: Text(
-              'Learn Live',
-              style: GoogleFonts.poppins(
-                textStyle: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 12.sp,
-                  color: const Color.fromARGB(255, 128, 128, 128),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 0.5.h),
+              child: Text(
+                'What do you want to learn today?',
+                style: GoogleFonts.poppins(
+                  textStyle: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 12.sp,
+                    color: const Color.fromARGB(255, 128, 128, 128),
+                  ),
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 5.w),
-            child: Row(
-              children: [
-                for (int i = 0; i < 4; i++)
-                  Container(
-                    height: 70.0,
-                    width: 70.0,
-                    margin: const EdgeInsets.all(8.0),
-                    child: Card(
-                      shape: CircleBorder(
-                        side: BorderSide(
-                          width: 2,
-                          color: borderColors[i],
-                        ),
-                      ),
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const TranscriptionPage()),
-                          );
-                        },
-                        child: ClipOval(
-                          child: Container(
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 2.5.h),
+              child: SearchBar(
+                hintText: 'Search',
+                leading: Icon(
+                  Icons.search,
+                  size: 25.sp,
+                  color: Colors.grey,
+                ),
+                hintStyle: MaterialStatePropertyAll(
+                  GoogleFonts.poppins(
+                    textStyle: const TextStyle(color: Colors.grey),
+                  ),
+                ),
+                elevation: const MaterialStatePropertyAll(0),
+                backgroundColor: const MaterialStatePropertyAll(
+                  Color.fromRGBO(220, 224, 255, 0.843),
+                ),
+                shape: MaterialStatePropertyAll(
+                  ContinuousRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(20.sp),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 0.5.h),
+              child: Text(
+                'Learn Live',
+                style: GoogleFonts.poppins(
+                  textStyle: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 12.sp,
+                    color: const Color.fromARGB(255, 128, 128, 128),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 5.w),
+              child: Row(
+                children: [
+                  for (int i = 0; i < 4; i++)
+                    Container(
+                      height: 70.0,
+                      width: 70.0,
+                      margin: const EdgeInsets.all(8.0),
+                      child: Card(
+                        shape: CircleBorder(
+                          side: BorderSide(
+                            width: 2,
                             color: borderColors[i],
-                            child: Center(
-                              child: Image.asset(
-                                imageAssets[i],
-                                height: 40.0,
-                                width: 40.0,
+                          ),
+                        ),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const TranscriptionPage()),
+                            );
+                          },
+                          child: ClipOval(
+                            child: Container(
+                              color: borderColors[i],
+                              child: Center(
+                                child: Image.asset(
+                                  imageAssets[i],
+                                  height: 40.0,
+                                  width: 40.0,
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 0.5.h),
-            child: Text(
-              'Your Subjects',
-              style: GoogleFonts.poppins(
-                textStyle: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 12.sp,
-                  color: const Color.fromARGB(255, 128, 128, 128),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 0.5.h),
+              child: Text(
+                'Your Subjects',
+                style: GoogleFonts.poppins(
+                  textStyle: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 12.sp,
+                    color: const Color.fromARGB(255, 128, 128, 128),
+                  ),
                 ),
               ),
             ),
-          ),
-          genNotes()
-        ],
-      )),
+            genNotes()
+          ],
+        )),
+      ),
     );
   }
 
@@ -185,8 +196,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                          Color(0xFFFE5E54),
-                          Color(0xFFFE5E54),
+                          Color.fromARGB(248, 244, 87, 255),
+                          Color.fromARGB(248, 143, 75, 147)
                         ]),
                     borderRadius: BorderRadius.circular(20.sp)),
                 child: Column(

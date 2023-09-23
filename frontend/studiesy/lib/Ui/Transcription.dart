@@ -11,14 +11,15 @@ class _TranscriptionPageState extends State<TranscriptionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:
-          const Color.fromARGB(255, 255, 255, 255), // Set the background color to red
+      backgroundColor: const Color.fromARGB(
+          255, 255, 255, 255), // Set the background color to red
       body: Stack(
         children: [
           ClipPath(
             clipper: MyCustomClipper(),
             child: Container(
-              color: const Color(0xFFFA5456), // Set the container color to white
+              color:
+                  const Color(0xFFBE03FD), // Set the container color to white
             ),
           ),
           const Padding(
