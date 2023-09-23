@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
+import 'package:studiesy/Ui/Transcription.dart';
 import 'package:studiesy/Ui/chatScreen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -11,12 +12,24 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<Color> borderColors = [
+    Color(0xFFFFB3C1),
+    Color(0xFF00C9B8),
+    Color(0xFFFCD200),
+    Colors.orangeAccent
+  ];
+  List<String> imageAssets = [
+    'assets/image1.png',
+    'assets/image2.png',
+    'assets/image3.png',
+    'assets/image4.png',
+  ];
   List subjects = [
     'Physics',
     'Maths',
     'Politics',
     'Chemistry',
-    'Computer Science'
+    'Computer Science',
   ];
 
   @override
@@ -80,6 +93,75 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 0.5.h),
+            child: Text(
+              'Learn Live',
+              style: GoogleFonts.poppins(
+                textStyle: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 12.sp,
+                  color: const Color.fromARGB(255, 128, 128, 128),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 5.w),
+            child: Row(
+              children: [
+                for (int i = 0; i < 4; i++)
+                  Container(
+                    height: 70.0,
+                    width: 70.0,
+                    margin: EdgeInsets.all(8.0),
+                    child: Card(
+                      shape: CircleBorder(
+                        side: BorderSide(
+                          width: 2,
+                          color: borderColors[i],
+                        ),
+                      ),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const TranscriptionPage()),
+                          );
+                        },
+                        child: ClipOval(
+                          child: Container(
+                            color: borderColors[i],
+                            child: Center(
+                              child: Image.asset(
+                                imageAssets[i],
+                                height: 40.0,
+                                width: 40.0,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 0.5.h),
+            child: Text(
+              'Your Subjects',
+              style: GoogleFonts.poppins(
+                textStyle: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 12.sp,
+                  color: const Color.fromARGB(255, 128, 128, 128),
+                ),
+              ),
+            ),
+          ),
           genNotes()
         ],
       )),
@@ -103,8 +185,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                          Color.fromRGBO(186, 142, 237, 1),
-                          Color.fromRGBO(154, 91, 232, 1),
+                          Color(0xFFFE5E54),
+                          Color(0xFFFE5E54),
                         ]),
                     borderRadius: BorderRadius.circular(20.sp)),
                 child: Column(
@@ -174,10 +256,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: EdgeInsets.only(left: 28.w),
                       child: IconButton(
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(
-            builder: (context) => const ConversationScreen(chatRoomId: 'dfdf', userName: 'sdsdsdsd',),
-          ),
-          );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ConversationScreen(
+                                  chatRoomId: 'dfdf',
+                                  userName: 'sdsdsdsd',
+                                ),
+                              ),
+                            );
                           },
                           icon: const Icon(
                             Icons.arrow_forward_ios,

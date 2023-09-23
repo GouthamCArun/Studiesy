@@ -1,19 +1,20 @@
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
-class TeacherScreen extends StatelessWidget {
-  const TeacherScreen({super.key});
+class TeacherScreen extends StatefulWidget {
+  const TeacherScreen({Key? key}) : super(key: key);
 
   @override
-  State<TeacherScreen> createState() => _TeacherScreenState();
+  _TeacherScreenState createState() => _TeacherScreenState();
 }
 
 class _TeacherScreenState extends State<TeacherScreen> {
-  @override
   var islistening = false;
   var text = "Press the button and start speaking";
   stt.SpeechToText speech = stt.SpeechToText();
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: AvatarGlow(
