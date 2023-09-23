@@ -25,8 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration:
-            const BoxDecoration(color: Color.fromARGB(255, 248, 248, 248)),
+        decoration: const BoxDecoration(color: Color(0xFFFFFCA9)),
         child: Center(
           child: Image.asset(
             'assets/Studiesy-logos_black.png',
