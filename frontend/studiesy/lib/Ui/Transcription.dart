@@ -12,19 +12,19 @@ class _TranscriptionPageState extends State<TranscriptionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor:
-          Color.fromARGB(255, 255, 255, 255), // Set the background color to red
+          const Color.fromARGB(255, 255, 255, 255), // Set the background color to red
       body: Stack(
         children: [
           ClipPath(
             clipper: MyCustomClipper(),
             child: Container(
-              color: Color(0xFFFA5456), // Set the container color to white
+              color: const Color(0xFFFA5456), // Set the container color to white
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 100.0),
+          const Padding(
+            padding: EdgeInsets.only(top: 100.0),
             child: Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: EdgeInsets.all(12.0),
               child: Center(
                 child: Text(
                   'This is a red background with a curved top!Engane like transcription varum.vanna pwoliyaanu.varrum.varate evde poovan.....Alfredee ith Single child Scroll view akane.....pine ipa parayanath vere color il vanna nice aavum like spotify lyrics ',

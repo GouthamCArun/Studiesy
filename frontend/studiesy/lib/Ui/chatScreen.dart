@@ -101,7 +101,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(80),
-            color: Color.fromARGB(207, 206, 83, 240),
+            color: const Color.fromARGB(207, 206, 83, 240),
           ),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
           child: Row(
@@ -162,7 +162,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
             fontWeight: FontWeight.w500,
           )),
         ),
-        shadowColor: Color.fromARGB(255, 223, 147, 236),
+        shadowColor: const Color.fromARGB(255, 223, 147, 236),
         toolbarHeight: 70,
       ),
       body: (_futureAlbum == null)

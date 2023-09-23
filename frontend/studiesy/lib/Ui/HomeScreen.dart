@@ -13,9 +13,9 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<Color> borderColors = [
-    Color(0xFFFFB3C1),
-    Color(0xFF00C9B8),
-    Color(0xFFFCD200),
+    const Color(0xFFFFB3C1),
+    const Color(0xFF00C9B8),
+    const Color(0xFFFCD200),
     Colors.orangeAccent
   ];
   List<String> imageAssets = [
@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 251, 247, 244),
+      backgroundColor: const Color.fromARGB(255, 251, 247, 244),
       body: SafeArea(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -114,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Container(
                     height: 70.0,
                     width: 70.0,
-                    margin: EdgeInsets.all(8.0),
+                    margin: const EdgeInsets.all(8.0),
                     child: Card(
                       shape: CircleBorder(
                         side: BorderSide(
@@ -223,7 +223,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Text(
                         'Mr.Raguram',
                         style: GoogleFonts.poppins(
-                            color: Color.fromARGB(255, 255, 255, 255),
+                            color: const Color.fromARGB(255, 255, 255, 255),
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w600),
                       ),
