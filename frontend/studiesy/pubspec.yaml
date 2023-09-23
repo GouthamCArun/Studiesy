@@ -46,6 +46,7 @@ dependencies:
   molten_navigationbar_flutter: ^1.0.1
   speech_to_text: ^6.3.0
   http: ^1.1.0
+  livespeechtotext: ^1.0.9
 
 dev_dependencies:
   flutter_test:

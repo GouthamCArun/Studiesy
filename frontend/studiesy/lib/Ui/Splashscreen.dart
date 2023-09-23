@@ -4,6 +4,8 @@ import 'package:studiesy/Ui/HomeScreen.dart';
 import 'package:studiesy/Ui/Teacher.dart';
 import 'package:studiesy/Ui/navigation.dart';
 
+import 'Teacher.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key, required this.loggedInSplash});
   // ignore: prefer_typing_uninitialized_variables
@@ -40,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => const Authentication(),
+            builder: (context) => TeacherScreen(),
           ),
         );
       } else {
