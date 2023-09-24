@@ -4,7 +4,9 @@ import 'package:flutter_tts/flutter_tts.dart';
 import 'tts.dart';
 
 class AudioScreen extends StatefulWidget {
-  const AudioScreen({Key? key});
+  const AudioScreen({super.key});
+
+  
 
   @override
   State<AudioScreen> createState() => _AudioScreenState();
@@ -36,12 +38,12 @@ class _AudioScreenState extends State<AudioScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            Text('Audio Screen'),
+            const Text('Audio Screen'),
             TextButton(
               onPressed: () async {
                 TextToSpeech.speak();
               },
-              child: Text('Speak'),
+              child: const Text('Speak'),
             ),
           ],
         ),
