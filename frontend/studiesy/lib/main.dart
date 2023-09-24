@@ -6,8 +6,11 @@ import 'package:sizer/sizer.dart';
 import 'package:studiesy/Ui/Splashscreen.dart';
 import 'package:studiesy/firebase_options.dart';
 
+import 'Ui/tts.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  TextToSpeech.initTTS();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
@@ -24,9 +27,9 @@ class MyApp extends StatelessWidget {
     return Sizer(
       builder: (BuildContext context, Orientation orientation,
           DeviceType deviceType) {
-        return  MaterialApp(
+        return MaterialApp(
           debugShowCheckedModeBanner: false,
-        home: StreamBuilder(
+          home: StreamBuilder(
             stream: FirebaseAuth.instance.authStateChanges(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
