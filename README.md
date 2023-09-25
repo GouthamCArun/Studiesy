@@ -21,16 +21,9 @@ This project was created for Mobile App Development challenge
 - [Athul Babu](https://github.com/ATHULB04)
 
 ## PPT presentation of our project can be viewed at the flowing link
-  "https://www.canva.com/design/DAFvX_bGfOk/8GfmUS96HK8EMLzYBjFO1A/edit?utm_content=DAFvX_bGfOk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
+"https://www.canva.com/design/DAFvX_bGfOk/8GfmUS96HK8EMLzYBjFO1A/edit?utm_content=DAFvX_bGfOk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
 
 
-<p align="center">
-  <a href="#problem-helpnow-solves">Problem Statement</a> •
-   <a href="#solution">Solution</a> •
-  <a href="#tech-stacks-used">Tech-Stacks used</a> •
-  <a href="#backend-repo">Backend Repo</a> •
-
-</p>
 <div align="center">
   <img src="pic_1.jpg" alt="Screenshot" width="33%" />
 </div>
