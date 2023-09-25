@@ -69,7 +69,7 @@ Furthermore, for hosting our project, we chose Railway. Railway is a cloud platf
      <br>
    </div>
       <div style="display:flex;" align="center">
-    <img src="simpflow.png" alt="Screenshot" width="33%">
+    <img src="workflow.png" alt="Screenshot" width="33%">
     <br>
    <h3>In Detail</h3>
      <br>
@@ -78,32 +78,20 @@ Furthermore, for hosting our project, we chose Railway. Railway is a cloud platf
     <img src="Idea Submission Template for Engineering Students.pptx.png" alt="Screenshot" width="33%">
     <br>
    </div>
-   <br>
-    <h3>How manager enters work</h3>
-   <div style="display:flex;" align="center">
-    <img src="pic_2.jpg" alt="Screenshot" width="33%">
-    <br>
-     <h3>Telegram</h3>
-     <br>
-   </div>
-      <div style="display:flex;" align="center">
-    <img src="pic_3.jpg" alt="Screenshot" width="33%">
-    <br>
-   </div>
 # TECH STACKS USED
 
 <h3> 
-  1.Next.js 
+  1.Flutter 
   <br>
   2.ChatGPT with LangChain(for finding techstalks,summarising meetings)
   <br>
- 3.FIREBASE as Database
+ 3.FIREBASE as Database,storge
   <br>
- 4.Flask Rust API (Backend for API calls)
+ 4.Flask Rest API (Backend for API calls)
   <br>
  5.RAILWAY
   <br>
- 6.whisper AI(for native audio transcription)
+ 6.Python (for various conversion)
   <br>
   
 </h3>
