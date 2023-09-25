@@ -32,6 +32,9 @@ This project was created for Mobile App Development challenge
   <img src="5.jpg" alt="Screenshot" width="18%" />
 </div>
 
+## For APK click here 👇
+"https://drive.google.com/file/d/1tgaNINw4XmQR1X5UGOymutfpHiTmQ7VU/view?usp=sharing"
+
 
 ## The Problem We Solve: "Education Accessibility: Develop inclusive applications that utilize generative AI to make education more accessible to individuals with disabilities, ensuring equal learning opportunities for all."
 "In traditional classrooms, a one-size-fits-all approach falls short, particularly for physically challenged students. Our mission at Studiesy is to foster inclusive and empowering learning environments for every student, addressing doubts, offering lesson replays, and providing reliable guidance for a brighter educational future."
