@@ -80,11 +80,11 @@ Furthermore, for hosting our project, we chose Railway. Railway is a cloud platf
   <br>
   2.ChatGPT with LangChain(for finding techstalks,summarising meetings)
   <br>
- 3.FIREBASE as Database,storge
+ 3.FIREBASE as Database, storge
   <br>
- 4.Flask Rest API (Backend for API calls)
+ 4.Flask Rest API (Backend framework)
   <br>
- 5.RAILWAY
+ 5.RAILWAY(backend hosting)
   <br>
  6.Python (for various conversion)
   <br>
