@@ -84,7 +84,7 @@ Furthermore, for hosting our project, we chose Railway. Railway is a cloud platf
 <h3> 
   1.Flutter 
   <br>
-  2.ChatGPT with LangChain(for finding techstalks,summarising meetings)
+  2.Large Language Model(LLM) with LangChain
   <br>
  3.FIREBASE as Database, storge
   <br>
