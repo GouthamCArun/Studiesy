@@ -25,9 +25,9 @@ This project was created for Mobile App Development challenge
 
 
 <div align="center">
-  <img src="3.jpg" alt="Screenshot" width="33%" />
-  <img src="4.jpg" alt="Screenshot" width="33%" />
-  <img src="5.jpg" alt="Screenshot" width="33%" />
+  <img src="3.jpg" alt="Screenshot" width="28%" />
+  <img src="4.jpg" alt="Screenshot" width="28%" />
+  <img src="5.jpg" alt="Screenshot" width="28%" />
 </div>
 
 <a href="https://www.youtube.com/watch?v=WWG3dgI1FbE&list=LL&index=6">Video presentation of Alloc.AI👈</a>click here
