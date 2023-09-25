@@ -24,9 +24,15 @@ This project was created for Mobile App Development challenge
 "https://www.canva.com/design/DAFvX_bGfOk/8GfmUS96HK8EMLzYBjFO1A/edit?utm_content=DAFvX_bGfOk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
 
 
+<style>
+  .image {
+    margin-right: 10px;
+  }
+</style>
+
 <div align="center">
-  <img src="3.jpg" alt="Screenshot" width="18%" style="margin-space: 30px;" />
-  <img src="4.jpg" alt="Screenshot" width="18%" style="margin-space: 30px;" />
+  <img src="3.jpg" alt="Screenshot" width="18%" class="image" />
+  <img src="4.jpg" alt="Screenshot" width="18%" class="image" />
   <img src="5.jpg" alt="Screenshot" width="18%" />
 </div>
 
