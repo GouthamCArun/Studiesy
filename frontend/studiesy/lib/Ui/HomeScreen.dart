@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 import 'package:studiesy/Ui/Transcription.dart';
 import 'package:studiesy/Ui/chatScreen.dart';
+import 'package:studiesy/models/databaseMethods.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -32,20 +34,23 @@ class _HomeScreenState extends State<HomeScreen> {
     'Computer Science',
   ];
 
+  Stream? notes;
+
+  @override
+  void initState() {
+    DataBaseMethods().getNotes().then((val) {
+      notes = val;
+      QuerySnapshot snapshotqi = val;
+      print(snapshotqi.docs[0]);
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Color.fromARGB(248, 249, 163, 255),
-              Color.fromARGB(255, 255, 251, 238),
-            ],
-          ),
-        ),
+        decoration: const BoxDecoration(color: Colors.white),
         child: SafeArea(
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,12 +58,12 @@ class _HomeScreenState extends State<HomeScreen> {
             Padding(
               padding: EdgeInsets.only(top: 3.h, left: 5.w),
               child: Text(
-                'Hey Rafe👋',
+                'Hey buddy👋',
                 style: GoogleFonts.poppins(
                   textStyle: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 22.sp,
-                    color: const Color.fromARGB(255, 57, 2, 78),
+                    color: const Color.fromARGB(255, 133, 1, 186),
                   ),
                 ),
               ),
@@ -181,112 +186,107 @@ class _HomeScreenState extends State<HomeScreen> {
 
   genNotes() {
     return Expanded(
-      child: GridView.builder(
-          itemCount: subjects.length,
-          padding: EdgeInsets.symmetric(horizontal: 5.w),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              childAspectRatio: 9 / 13, crossAxisCount: 2),
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: EdgeInsets.all(1.5.w),
-              child: Container(
-                height: 200,
-                decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          Color.fromARGB(248, 244, 87, 255),
-                          Color.fromARGB(248, 143, 75, 147)
-                        ]),
-                    borderRadius: BorderRadius.circular(20.sp)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(top: 1.5.h, left: 4.w),
-                      child: Text(
-                        subjects[index],
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        softWrap: true,
-                        style: GoogleFonts.poppins(
-                            height: 1,
-                            color: Colors.white,
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.w500),
-                      ),
+      child:GridView.builder(
+              itemCount: subjects.length,
+              padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 0.5.h),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  childAspectRatio: 9 / 13, crossAxisCount: 2),
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: EdgeInsets.all(1.5.w),
+                  child: Container(
+                    height: 200,
+                    decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              Color.fromARGB(248, 244, 87, 255),
+                              Color.fromARGB(248, 143, 75, 147)
+                            ]),
+                        borderRadius: BorderRadius.circular(20.sp)),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(
+                            top: 1.5.h,
+                            left: 4.w,
+                          ),
+                          child: Text(
+                            subjects[index],
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: true,
+                            style: GoogleFonts.poppins(
+                                height: 1,
+                                color: Colors.white,
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.w700),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 4.w,
+                          ),
+                          child: Text(
+                            'Mr.Raguram',
+                            style: GoogleFonts.poppins(
+                                color: const Color.fromARGB(255, 255, 255, 255),
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 4.w),
+                          child: Text(
+                            'Electromagnets',
+                            style: GoogleFonts.poppins(
+                                color: const Color.fromARGB(255, 255, 255, 255),
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 4.w,
+                          ),
+                          child: Text(
+                            'Chemical bonding is a fundamental concept in chemistry that describes how atoms and molecules come together to form compounds. It is the glue that holds matter together and is crucial in understanding the behavior of substances in the physical world. There are several types of chemical bonding, each characterized by the way atoms share or transfer electrons to achieve a stable, lower-energy state.  The three primary types of chemical bonding are:  Ionic Bonding: Ionic bonding occurs when atoms transfer electrons to one another, resulting in the formation of ions. One atom loses electrons to become positively charged (cation), while the other gains those electrons to become negatively charged (anion). These oppositely charged ions are attracted to each other, creating a strong electrostatic force that holds them together. Common examples of ionic compounds include table salt (sodium chloride, NaCl) and calcium carbonate (CaCO3).  Covalent Bonding: Covalent bonding involves the sharing of electrons between atoms to achieve a stable electron configuration. In a covalent bond, atoms share one or more pairs of electrons, and this sharing creates a strong attraction between the nuclei of the bonded atoms and the shared electrons. Covalent bonds are typically found in molecules made up of nonmetals. Water (H2O) and methane (CH4) are examples of molecules held together by covalent bonds.  Metallic Bonding: Metallic bonding is unique to metals and is responsible for many of their characteristic properties. In metallic bonding, atoms within a metal lattice share their electrons freely. This electron "sea" allows for the high electrical conductivity, malleability, and ductility of metals. Metals like copper, iron, and gold exhibit metallic bonding.',
+                            overflow: TextOverflow.fade,
+                            maxLines: 4,
+                            style: GoogleFonts.poppins(
+                                color: const Color.fromARGB(255, 228, 228, 228),
+                                fontSize: 8.sp,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 28.w),
+                          child: IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ConversationScreen(
+                                      chatRoomId: 'dfdf',
+                                      userName: 'Studiesy',
+                                    ),
+                                  ),
+                                );
+                              },
+                              icon: const Icon(
+                                Icons.arrow_forward_ios,
+                                color: Colors.white,
+                              )),
+                        )
+                      ],
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 4.w),
-                      child: Text(
-                        '10 Sep 2023',
-                        style: GoogleFonts.poppins(
-                            color: const Color.fromARGB(255, 215, 215, 215),
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 4.w,
-                      ),
-                      child: Text(
-                        'Mr.Raguram',
-                        style: GoogleFonts.poppins(
-                            color: const Color.fromARGB(255, 255, 255, 255),
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w600),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 4.w),
-                      child: Text(
-                        'Electromagnets',
-                        style: GoogleFonts.poppins(
-                            color: const Color.fromARGB(255, 255, 255, 255),
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w600),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 4.w,
-                      ),
-                      child: Text(
-                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book',
-                        overflow: TextOverflow.fade,
-                        maxLines: 4,
-                        style: GoogleFonts.poppins(
-                            color: const Color.fromARGB(255, 220, 220, 220),
-                            fontSize: 8.sp,
-                            fontWeight: FontWeight.w600),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 28.w),
-                      child: IconButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const ConversationScreen(
-                                  chatRoomId: 'dfdf',
-                                  userName: 'sdsdsdsd',
-                                ),
-                              ),
-                            );
-                          },
-                          icon: const Icon(
-                            Icons.arrow_forward_ios,
-                            color: Colors.white,
-                          )),
-                    )
-                  ],
-                ),
-              ),
-            );
-          }),
+                  ),
+                );
+              })
+          
     );
   }
 }

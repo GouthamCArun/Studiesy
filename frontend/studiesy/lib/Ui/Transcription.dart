@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 class TranscriptionPage extends StatefulWidget {
@@ -8,6 +9,8 @@ class TranscriptionPage extends StatefulWidget {
 }
 
 class _TranscriptionPageState extends State<TranscriptionPage> {
+   final DatabaseReference databaseReference =
+      FirebaseDatabase.instance.ref().child('teacher');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,22 +25,27 @@ class _TranscriptionPageState extends State<TranscriptionPage> {
                   const Color(0xFFBE03FD), // Set the container color to white
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(top: 100.0),
-            child: Padding(
-              padding: EdgeInsets.all(12.0),
-              child: Center(
-                child: Text(
-                  'This is a red background with a curved top!Engane like transcription varum.vanna pwoliyaanu.varrum.varate evde poovan.....Alfredee ith Single child Scroll view akane.....pine ipa parayanath vere color il vanna nice aavum like spotify lyrics ',
-                  style: TextStyle(
-                    fontFamily: 'poppins',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24,
-                    color: Color.fromARGB(255, 243, 239, 239),
+          StreamBuilder(
+            stream: databaseReference.onValue,
+            builder: (context, snapshot) {
+              return  Padding(
+                padding: EdgeInsets.only(top: 100.0),
+                child: Padding(
+                  padding: EdgeInsets.all(12.0),
+                  child: Center(
+                    child: Text(
+                      snapshot.hasData ? snapshot.data!.snapshot.value.toString() : "no live happening",
+                      style: TextStyle(
+                        fontFamily: 'poppins',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24,
+                        color: Color.fromARGB(255, 243, 239, 239),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
+              );
+            }
           ),
         ],
       ),

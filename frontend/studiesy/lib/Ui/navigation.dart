@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:molten_navigationbar_flutter/molten_navigationbar_flutter.dart';
 import 'package:studiesy/Ui/HomeScreen.dart';
+import 'package:studiesy/Ui/Teacher.dart';
 
 class NavigationPage extends StatefulWidget {
   const NavigationPage({super.key});
@@ -13,6 +14,7 @@ class _NavigationPageState extends State<NavigationPage> {
   int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
+    List pages = [const HomeScreen(), const TeacherScreen()];
     return Scaffold(
       bottomNavigationBar: MoltenBottomNavigationBar(
         domeCircleColor: const Color.fromARGB(255, 154, 91, 232),
@@ -31,7 +33,7 @@ class _NavigationPageState extends State<NavigationPage> {
           ),
         ],
       ),
-      body: const HomeScreen(),
+      body: pages[_selectedIndex],
     );
   }
 }

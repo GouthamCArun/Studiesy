@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:studiesy/Ui/HomeScreen.dart';
+import 'package:studiesy/Ui/Teacher.dart';
 import 'package:studiesy/Ui/navigation.dart';
 
 import 'Ui/Auth.dart';
@@ -109,7 +110,7 @@ class AuthService {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const NavigationPage(),
+          builder: (context) => const TeacherScreen(),
         ),
       );
     } else {

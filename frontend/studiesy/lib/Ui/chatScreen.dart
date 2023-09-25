@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
 
+import 'package:studiesy/Ui/audio.dart';
+
 class ConversationScreen extends StatefulWidget {
   const ConversationScreen(
       {super.key, required this.chatRoomId, required this.userName});
@@ -153,6 +155,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFffffff),
       appBar: AppBar(
+        backgroundColor: Colors.purpleAccent[700],
         title: Text(
           widget.userName,
           style: GoogleFonts.poppins(
@@ -162,6 +165,17 @@ class _ConversationScreenState extends State<ConversationScreen> {
             fontWeight: FontWeight.w500,
           )),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const AudioScreen()),
+              );
+            },
+            icon: const Icon(Icons.speaker),
+          ),
+        ],
         shadowColor: const Color.fromARGB(255, 223, 147, 236),
         toolbarHeight: 70,
       ),
@@ -174,12 +188,15 @@ class _ConversationScreenState extends State<ConversationScreen> {
 
 Future<Album> createAlbum(String question) async {
   final response = await http.post(
-    Uri.parse('https://pyg-backend.up.railway.app/chatbot-api'),
+    Uri.parse('https://web-production-4ed5.up.railway.app/bot'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
     body: jsonEncode(<String, String>{
-      "query": question,
+      "question": question,
+      "subject": "Chemistry",
+      "date": "23-09-2023",
+      "period": "1"
     }),
   );
 
@@ -202,7 +219,7 @@ class Album {
 
   factory Album.fromJson(Map<String, dynamic> json) {
     return Album(
-      answer: json['response'],
+      answer: json['result'],
     );
   }
 }

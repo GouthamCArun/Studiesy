@@ -4,9 +4,7 @@ import 'package:flutter_tts/flutter_tts.dart';
 import 'tts.dart';
 
 class AudioScreen extends StatefulWidget {
-  const AudioScreen({super.key});
-
-  
+  const AudioScreen({Key? key});
 
   @override
   State<AudioScreen> createState() => _AudioScreenState();
@@ -32,19 +30,51 @@ class _AudioScreenState extends State<AudioScreen> {
     await flutterTts.speak(text);
   }
 
+  bool isPlaying = false;
+
+  void togglePlayPause() {
+    setState(() {
+      isPlaying = !isPlaying;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFBE03FD),
       body: SafeArea(
         child: Column(
           children: [
-            const Text('Audio Screen'),
-            TextButton(
-              onPressed: () async {
-                TextToSpeech.speak();
-              },
-              child: const Text('Speak'),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(
+                  'Press Button to hear Audio of the Summary',
+                  style: TextStyle(
+                    fontFamily: 'poppins',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24,
+                    color: Color.fromARGB(255, 243, 239, 239),
+                  ),
+                ),
+              ),
             ),
+            Padding(
+              padding: const EdgeInsets.only(top: 250.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  togglePlayPause();
+                },
+                style: ElevatedButton.styleFrom(
+                  shape: CircleBorder(),
+                  padding: EdgeInsets.all(16.0),
+                ),
+                child: Icon(
+                  isPlaying ? Icons.pause : Icons.play_arrow,
+                  size: 50.0,
+                ),
+              ),
+            )
           ],
         ),
       ),

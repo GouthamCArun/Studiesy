@@ -1,7 +1,12 @@
 import 'package:avatar_glow/avatar_glow.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
+import 'package:studiesy/Ui/Transcription.dart';
+
+import '../Authentication.dart';
 
 class TeacherScreen extends StatefulWidget {
   const TeacherScreen({Key? key}) : super(key: key);
@@ -15,21 +20,32 @@ class _TeacherScreenState extends State<TeacherScreen> {
   String text = "Press the button and start speaking";
   late stt.SpeechToText _speech;
   bool _isListening = false;
-  String _text = 'press';
+  String _text = 'Press the button and start the class';
   double _confidence = 1.0;
+  final DatabaseReference databaseReference =
+      FirebaseDatabase.instance.ref().child('teacher');
 
   @override
   void initState() {
-    _speech = stt.SpeechToText();
     super.initState();
+    _speech = stt.SpeechToText();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.redAccent,
-        title: Text('Confidence: ${(_confidence * 100.0).toStringAsFixed(1)}%'),
+        backgroundColor: Colors.white,
+        actions: [
+          IconButton(
+              onPressed: () {
+                AuthService().signOut(context);
+              },
+              icon: const Icon(
+                Icons.logout,
+                color: Colors.purple,
+              ))
+        ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: AvatarGlow(
@@ -44,17 +60,35 @@ class _TeacherScreenState extends State<TeacherScreen> {
             onPressed: _listen,
             child: Icon(_isListening ? Icons.mic : Icons.mic_none)),
       ),
-      body: SingleChildScrollView(
-        reverse: true,
-        child: Container(
-          padding: const EdgeInsets.fromLTRB(30, 30, 30, 150),
-          child: Text(
-            _text,
-            style: GoogleFonts.poppins(
-              color: Colors.red,
+      body: Stack(
+        children: [
+          ClipPath(
+            clipper: MyCustomClipper(),
+            child: Container(
+              color:
+                  const Color(0xFFBE03FD), // Set the container color to white
             ),
           ),
-        ),
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 100.0),
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Center(
+                  child: Text(
+                    _text,
+                    style: const TextStyle(
+                      fontFamily: 'poppins',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                      color: Color.fromARGB(255, 243, 239, 239),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -66,15 +100,23 @@ class _TeacherScreenState extends State<TeacherScreen> {
         onError: (val) => print('onError: $val'),
       );
       print(available);
+
       if (available) {
         setState(() => _isListening = true);
         _speech.listen(
+          listenFor: const Duration(hours: 1),
+          listenMode: stt.ListenMode.dictation,
+          pauseFor: const Duration(minutes: 2),
           cancelOnError: true,
-          onDevice: false,
           onResult: (val) => setState(() {
             _text = val.recognizedWords;
             if (val.hasConfidenceRating && val.confidence > 0) {
               _confidence = val.confidence;
+            }
+            if (val.recognizedWords.isNotEmpty) {
+              // Create a unique key for each word (you can customize this)
+              // Update the database with the word
+              databaseReference.set(val.recognizedWords);
             }
           }),
         );
