@@ -69,13 +69,13 @@ Furthermore, for hosting our project, we chose Railway. Railway is a cloud platf
      <br>
    </div>
       <div style="display:flex;" align="center">
-    <img src="workflow.png" alt="Screenshot" width="33%">
+    <img src="workflow.png" alt="Screenshot" width="55%">
     <br>
    <h3>In Detail</h3>
      <br>
     </div>
       <div style="display:flex;" align="center">
-    <img src="Idea Submission Template for Engineering Students.pptx.png" alt="Screenshot" width="33%">
+    <img src="Idea Submission Template for Engineering Students.pptx.png" alt="Screenshot" width="55%">
     <br>
    </div>
 # TECH STACKS USED
