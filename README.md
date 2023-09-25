@@ -1,7 +1,7 @@
 # STUDIESY
 <h1 align="center">
   <br>
-  <img src="logo.png" alt="Markdownify" width="400">
+  <img src="Studiesy.png" alt="Markdownify" width="400">
   <br>
   STUDIESY
   <br>
