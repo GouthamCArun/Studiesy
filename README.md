@@ -25,8 +25,8 @@ This project was created for Mobile App Development challenge
 
 
 <div align="center">
-  <img src="3.jpg" alt="Screenshot" width="18%" />
-  <img src="4.jpg" alt="Screenshot" width="18%" />
+  <img src="3.jpg" alt="Screenshot" width="18%" style="margin-right: 10px;" />
+  <img src="4.jpg" alt="Screenshot" width="18%" style="margin-right: 10px;" />
   <img src="5.jpg" alt="Screenshot" width="18%" />
 </div>
 
