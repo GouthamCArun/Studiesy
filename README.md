@@ -1,21 +1,18 @@
-# Alloc.AI
+# STUDIESY
 <h1 align="center">
   <br>
   <img src="logo.png" alt="Markdownify" width="400">
   <br>
-  Alloc.AI
+  STUDIESY
   <br>
 </h1>
 
-<h3 align="center">Smart Work Allocation, Seamless Results!</h3>
+<h3 align="center">AI-Powered Education: Bridging the Opportunity Gap</h3>
 
 
 ## About
 
-This project was created for GTA-CodeStorm by Team Mark-10
-
-## Tracks we are competing for
-    Software-GTAST002
+This project was created for Mobile App Development challenge
 
 ## Team Members:
 
