@@ -20,6 +20,8 @@ This project was created for Mobile App Development challenge
 - [Alfred Jimmy](https://github.com/alffy007)
 - [Athul Babu](https://github.com/ATHULB04)
 
+## PPT presentation of our project can be viewed at the flowing link
+  "https://www.canva.com/design/DAFvX_bGfOk/8GfmUS96HK8EMLzYBjFO1A/edit?utm_content=DAFvX_bGfOk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
 
 
 <p align="center">
