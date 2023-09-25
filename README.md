@@ -24,11 +24,6 @@ This project was created for Mobile App Development challenge
 "https://www.canva.com/design/DAFvX_bGfOk/8GfmUS96HK8EMLzYBjFO1A/edit?utm_content=DAFvX_bGfOk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
 
 
-<style>
-  .image {
-    margin-right: 10px;
-  }
-</style>
 
 <div align="center">
   <img src="3.jpg" alt="Screenshot" width="18%" class="image" />
@@ -36,7 +31,7 @@ This project was created for Mobile App Development challenge
   <img src="5.jpg" alt="Screenshot" width="18%" />
 </div>
 
-<a href="https://www.youtube.com/watch?v=WWG3dgI1FbE&list=LL&index=6">Video presentation of Alloc.AI👈</a>click here
+
 ## The Problem We Solve: "Education Accessibility: Develop inclusive applications that utilize generative AI to make education more accessible to individuals with disabilities, ensuring equal learning opportunities for all."
 "In traditional classrooms, a one-size-fits-all approach falls short, particularly for physically challenged students. Our mission at Studiesy is to foster inclusive and empowering learning environments for every student, addressing doubts, offering lesson replays, and providing reliable guidance for a brighter educational future."
 
