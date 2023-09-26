@@ -28,10 +28,10 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
   List subjects = [
     'Physics',
-    'Maths',
-    'Politics',
+    'Mathematics',
+    'English',
     'Chemistry',
-    'Computer Science',
+
   ];
 
   Stream? notes;
@@ -269,9 +269,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>
-                                        const ConversationScreen(
+                                         ConversationScreen(
                                       chatRoomId: 'dfdf',
                                       userName: 'Studiesy',
+                                      subject: subjects[index],
                                     ),
                                   ),
                                 );

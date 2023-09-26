@@ -134,7 +134,7 @@ class _AuthFormState extends State<AuthForm> {
             ? Padding(
                 padding: EdgeInsets.all(2.w),
                 child: Text(
-                  'Students',
+                  'Login',
                   style: GoogleFonts.poppins(
                     fontSize: 24.sp,
                     fontWeight: FontWeight.w700,
@@ -144,7 +144,7 @@ class _AuthFormState extends State<AuthForm> {
             : Padding(
                 padding: EdgeInsets.all(2.0.w),
                 child: Text(
-                  'Teachers',
+                  'SignIn',
                   style: GoogleFonts.poppins(
                     fontSize: 24.sp,
                     fontWeight: FontWeight.w700,
@@ -273,7 +273,7 @@ class _AuthFormState extends State<AuthForm> {
                 ),
               )
             : Text(
-                'T',
+                'Google Login',
                 style: GoogleFonts.poppins(
                   fontSize: 18.sp,
                   color: const Color.fromARGB(255, 0, 0, 0),

@@ -8,9 +8,13 @@ import 'package:studiesy/Ui/audio.dart';
 
 class ConversationScreen extends StatefulWidget {
   const ConversationScreen(
-      {super.key, required this.chatRoomId, required this.userName});
+      {super.key,
+      required this.chatRoomId,
+      required this.userName,
+      required this.subject});
   final String chatRoomId;
   final String userName;
+  final String subject;
 
   @override
   State<ConversationScreen> createState() => _ConversationScreenState();
@@ -34,7 +38,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
           return Text('${snapshot.error}');
         }
 
-        return const CircularProgressIndicator();
+        return const Center(child: CircularProgressIndicator());
       },
     );
   }
@@ -88,7 +92,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
     if (messageController.text.isNotEmpty) {
       setState(() {
         student[index + 1] = messageController.text;
-        _futureAlbum = createAlbum(messageController.text);
+        _futureAlbum = createAlbum(messageController.text, widget.subject);
         messageController.text = "";
         index + 1;
       });
@@ -186,7 +190,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
   }
 }
 
-Future<Album> createAlbum(String question) async {
+Future<Album> createAlbum(String question, String subject) async {
   final response = await http.post(
     Uri.parse('https://web-production-4ed5.up.railway.app/bot'),
     headers: <String, String>{
@@ -194,9 +198,7 @@ Future<Album> createAlbum(String question) async {
     },
     body: jsonEncode(<String, String>{
       "question": question,
-      "subject": "Chemistry",
-      "date": "23-09-2023",
-      "period": "1"
+      "subject": subject,
     }),
   );
 

@@ -1,8 +1,6 @@
 import 'package:avatar_glow/avatar_glow.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'package:studiesy/Ui/Transcription.dart';
 

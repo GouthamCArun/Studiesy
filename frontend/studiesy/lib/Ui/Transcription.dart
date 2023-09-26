@@ -29,13 +29,13 @@ class _TranscriptionPageState extends State<TranscriptionPage> {
             stream: databaseReference.onValue,
             builder: (context, snapshot) {
               return  Padding(
-                padding: EdgeInsets.only(top: 100.0),
+                padding: const EdgeInsets.only(top: 100.0),
                 child: Padding(
-                  padding: EdgeInsets.all(12.0),
+                  padding: const EdgeInsets.all(12.0),
                   child: Center(
                     child: Text(
                       snapshot.hasData ? snapshot.data!.snapshot.value.toString() : "no live happening",
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontFamily: 'poppins',
                         fontWeight: FontWeight.bold,
                         fontSize: 24,

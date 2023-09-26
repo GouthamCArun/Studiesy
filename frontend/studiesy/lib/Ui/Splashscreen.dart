@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:studiesy/Ui/Auth.dart';
-import 'package:studiesy/Ui/Teacher.dart';
 import 'package:studiesy/Ui/navigation.dart';
 
 class SplashScreen extends StatefulWidget {

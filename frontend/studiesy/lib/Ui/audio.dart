@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
-import 'tts.dart';
 
 class AudioScreen extends StatefulWidget {
-  const AudioScreen({Key? key});
+  const AudioScreen({super.key});
 
   @override
   State<AudioScreen> createState() => _AudioScreenState();
@@ -45,9 +44,9 @@ class _AudioScreenState extends State<AudioScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            Center(
+            const Center(
               child: Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(20.0),
                 child: Text(
                   'Press Button to hear Audio of the Summary',
                   style: TextStyle(
@@ -66,8 +65,8 @@ class _AudioScreenState extends State<AudioScreen> {
                   togglePlayPause();
                 },
                 style: ElevatedButton.styleFrom(
-                  shape: CircleBorder(),
-                  padding: EdgeInsets.all(16.0),
+                  shape: const CircleBorder(),
+                  padding: const EdgeInsets.all(16.0),
                 ),
                 child: Icon(
                   isPlaying ? Icons.pause : Icons.play_arrow,
