@@ -20,15 +20,22 @@ This project was created for Mobile App Development challenge
 - [Alfred Jimmy](https://github.com/alffy007)
 - [Athul Babu](https://github.com/ATHULB04)
 
-## PPT presentation of our project can be viewed at the flowing link
+## PPT presentation of our project can be viewed in the folowing link
 "https://www.canva.com/design/DAFvX_bGfOk/8GfmUS96HK8EMLzYBjFO1A/edit?utm_content=DAFvX_bGfOk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
 
+## Video Presentation of our project can be viewed in the following link
+"https://www.youtube.com/watch?v=ssWE9UUYm2I&ab_channel=Mark-10"
 
 <div align="center">
-  <img src="pic_1.jpg" alt="Screenshot" width="33%" />
+  <img src="3.jpg" alt="Screenshot" width="18%" class="image" />
+  <img src="rtdb.jpg" alt="Screenshot" width="18%" class="image" />
+  <img src="5.jpg" alt="Screenshot" width="18%" />
 </div>
 
-<a href="https://www.youtube.com/watch?v=WWG3dgI1FbE&list=LL&index=6">Video presentation of Alloc.AI👈</a>click here
+## For APK click here 👇
+"https://drive.google.com/file/d/1tgaNINw4XmQR1X5UGOymutfpHiTmQ7VU/view?usp=sharing"
+
+
 ## The Problem We Solve: "Education Accessibility: Develop inclusive applications that utilize generative AI to make education more accessible to individuals with disabilities, ensuring equal learning opportunities for all."
 "In traditional classrooms, a one-size-fits-all approach falls short, particularly for physically challenged students. Our mission at Studiesy is to foster inclusive and empowering learning environments for every student, addressing doubts, offering lesson replays, and providing reliable guidance for a brighter educational future."
 
@@ -76,13 +83,13 @@ Furthermore, for hosting our project, we chose Railway. Railway is a cloud platf
 <h3> 
   1.Flutter 
   <br>
-  2.ChatGPT with LangChain(for finding techstalks,summarising meetings)
+  2.Large Language Model(LLM) with LangChain
   <br>
- 3.FIREBASE as Database,storge
+ 3.FIREBASE as Database, storge
   <br>
- 4.Flask Rest API (Backend for API calls)
+ 4.Flask Rest API (Backend framework)
   <br>
- 5.RAILWAY
+ 5.RAILWAY(backend hosting)
   <br>
  6.Python (for various conversion)
   <br>
