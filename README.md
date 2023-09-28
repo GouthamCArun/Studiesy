@@ -24,7 +24,7 @@ This project was created for Mobile App Development challenge
 "https://www.canva.com/design/DAFvX_bGfOk/8GfmUS96HK8EMLzYBjFO1A/edit?utm_content=DAFvX_bGfOk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
 
 ## Video Presentation of our project can be viewed in the following link
-"https://www.youtube.com/watch?v=ssWE9UUYm2I&ab_channel=Mark-10"
+"https://youtu.be/WJzbrlJGpss?si=OkbFdzOP3wU3aN7s"
 
 <div align="center">
   <img src="3.jpg" alt="Screenshot" width="18%" class="image" />
