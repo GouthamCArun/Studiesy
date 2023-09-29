@@ -14,6 +14,10 @@ class _TranscriptionPageState extends State<TranscriptionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar:AppBar(
+        backgroundColor: const Color(0xFFBE03FD),
+        elevation: 0,
+      ),
       backgroundColor: const Color.fromARGB(
           255, 255, 255, 255), // Set the background color to red
       body: Stack(
@@ -33,15 +37,17 @@ class _TranscriptionPageState extends State<TranscriptionPage> {
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Center(
-                    child: Text(
-                      snapshot.hasData ? snapshot.data!.snapshot.value.toString() : "no live happening",
+                    child: snapshot.hasData ?
+                    Text(
+                      snapshot.data!.snapshot.value.toString() != "" ? snapshot.data!.snapshot.value.toString() : "no live happening",
                       style: const TextStyle(
                         fontFamily: 'poppins',
                         fontWeight: FontWeight.bold,
                         fontSize: 24,
                         color: Color.fromARGB(255, 243, 239, 239),
                       ),
-                    ),
+                    ):
+                    const CircularProgressIndicator()
                   ),
                 ),
               );

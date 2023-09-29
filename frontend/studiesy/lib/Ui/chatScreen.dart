@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+
+import 'package:sizer/sizer.dart';
 import 'dart:async';
 
 import 'package:studiesy/Ui/audio.dart';
+import 'package:studiesy/models/databaseMethods.dart';
+
+import 'Widgets/chatMessageList.dart';
 
 class ConversationScreen extends StatefulWidget {
   const ConversationScreen(
@@ -22,26 +25,8 @@ class ConversationScreen extends StatefulWidget {
 
 class _ConversationScreenState extends State<ConversationScreen> {
   TextEditingController messageController = TextEditingController();
-  Future<Album>? _futureAlbum;
 
-  FutureBuilder<Album> buildFutureBuilder(int index) {
-    return FutureBuilder<Album>(
-      future: _futureAlbum,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          student[index] = snapshot.data!.answer;
-
-          return Column(
-            children: [Expanded(child: chatMessageList()), MessageBar()],
-          );
-        } else if (snapshot.hasError) {
-          return Text('${snapshot.error}');
-        }
-
-        return const Center(child: CircularProgressIndicator());
-      },
-    );
-  }
+  DataBaseMethods dataBaseMethods = DataBaseMethods();
 
   Widget buildPastBuilder() {
     return Container(
@@ -52,10 +37,6 @@ class _ConversationScreenState extends State<ConversationScreen> {
     );
   }
 
-  var student = {};
-  int index = 0;
-  bool sended = false;
-
   Widget chatMessageList() {
     return Stack(children: [
       Center(
@@ -65,36 +46,25 @@ class _ConversationScreenState extends State<ConversationScreen> {
         ),
       ),
       Column(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Expanded(
-            child: ListView.builder(
-                shrinkWrap: true,
-                reverse: true,
-                itemCount: student.length,
-                itemBuilder: (BuildContext context, int index) {
-                  int lastIndex = (student.length - index);
-                  if (index.isEven) {
-                    sended = false;
-                  } else {
-                    sended = true;
-                  }
-                  return MessageTiles(
-                      message: student[index], sendbyme: sended);
-                }),
-          ),
+          ChatMessageList(chatroomId: widget.subject),
         ],
       ),
     ]);
   }
 
-  sendMessage() {
-    if (messageController.text.isNotEmpty) {
+  sendTextMessage(controller) {
+    if (controller.text.isNotEmpty) {
+      Map<String, dynamic> messageMap = {
+        "message": controller.text,
+        "isSender": true,
+        "time": DateTime.now().millisecondsSinceEpoch,
+      };
+      dataBaseMethods.addConversationMessage(
+          widget.subject, messageMap, controller.text, widget.subject);
       setState(() {
-        student[index + 1] = messageController.text;
-        _futureAlbum = createAlbum(messageController.text, widget.subject);
-        messageController.text = "";
-        index + 1;
+        controller.text = "";
       });
     }
   }
@@ -107,14 +77,18 @@ class _ConversationScreenState extends State<ConversationScreen> {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(80),
-            color: const Color.fromARGB(207, 206, 83, 240),
+            color: Colors.purpleAccent[700],
           ),
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+          padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 0.3.h),
           child: Row(
             children: [
               Expanded(
-                  child: TextField(
+                  child: TextFormField(
                 controller: messageController,
+                onFieldSubmitted: (value) {
+                  sendTextMessage(messageController);
+                  print(messageController.text);
+                },
                 style: GoogleFonts.poppins(
                     textStyle: const TextStyle(
                   color: Color.fromARGB(255, 255, 255, 255),
@@ -131,7 +105,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
               )),
               GestureDetector(
                 onTap: () {
-                  sendMessage();
+                  sendTextMessage(messageController);
                 },
                 child: Container(
                   height: 40,
@@ -157,126 +131,32 @@ class _ConversationScreenState extends State<ConversationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFffffff),
-      appBar: AppBar(
-        backgroundColor: Colors.purpleAccent[700],
-        title: Text(
-          widget.userName,
-          style: GoogleFonts.poppins(
-              textStyle: const TextStyle(
-            color: Color.fromARGB(255, 248, 248, 248),
-            fontSize: 22,
-            fontWeight: FontWeight.w500,
-          )),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const AudioScreen()),
-              );
-            },
-            icon: const Icon(Icons.speaker),
+        backgroundColor: const Color(0xFFffffff),
+        appBar: AppBar(
+          backgroundColor: Colors.purpleAccent[700],
+          title: Text(
+            widget.userName,
+            style: GoogleFonts.poppins(
+                textStyle: const TextStyle(
+              color: Color.fromARGB(255, 248, 248, 248),
+              fontSize: 22,
+              fontWeight: FontWeight.w500,
+            )),
           ),
-        ],
-        shadowColor: const Color.fromARGB(255, 223, 147, 236),
-        toolbarHeight: 70,
-      ),
-      body: (_futureAlbum == null)
-          ? buildPastBuilder()
-          : buildFutureBuilder(index),
-    );
-  }
-}
-
-Future<Album> createAlbum(String question, String subject) async {
-  final response = await http.post(
-    Uri.parse('https://web-production-4ed5.up.railway.app/bot'),
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    },
-    body: jsonEncode(<String, String>{
-      "question": question,
-      "subject": subject,
-    }),
-  );
-
-  if (response.statusCode == 200) {
-    // If the server did return a 201 CREATED response,
-    // then parse the JSON.
-    print(jsonDecode(response.body));
-    return Album.fromJson(jsonDecode(response.body));
-  } else {
-    // If the server did not return a 201 CREATED response,
-    // then throw an exception.
-    throw Exception('Failed to create album');
-  }
-}
-
-class Album {
-  final String answer;
-
-  const Album({required this.answer});
-
-  factory Album.fromJson(Map<String, dynamic> json) {
-    return Album(
-      answer: json['result'],
-    );
-  }
-}
-
-class MessageTiles extends StatelessWidget {
-  const MessageTiles(
-      {super.key, required this.message, required this.sendbyme});
-  final String message;
-  final bool sendbyme;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment:
-          sendbyme ? MainAxisAlignment.end : MainAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-          child: Container(
-              constraints: const BoxConstraints(maxWidth: 200),
-              decoration: BoxDecoration(
-                gradient: sendbyme
-                    ? const LinearGradient(
-                        colors: [Color(0xFF19B7FF), Color(0xFF491CCB)])
-                    : const LinearGradient(colors: [
-                        Color.fromARGB(255, 82, 83, 155),
-                        Color(0xFF3A364B)
-                      ]),
-                borderRadius: sendbyme
-                    ? const BorderRadius.only(
-                        topLeft: Radius.circular(23),
-                        topRight: Radius.circular(23),
-                        bottomLeft: Radius.circular(23))
-                    : const BorderRadius.only(
-                        topLeft: Radius.circular(23),
-                        topRight: Radius.circular(23),
-                        bottomRight: Radius.circular(23)),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  children: [
-                    Text(
-                      message,
-                      style: GoogleFonts.poppins(
-                          textStyle: const TextStyle(
-                        color: Color.fromARGB(255, 255, 255, 255),
-                        fontSize: 18,
-                      )),
-                    ),
-                  ],
-                ),
-              )),
-        )
-      ],
-    );
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const AudioScreen()),
+                );
+              },
+              icon: const Icon(Icons.speaker),
+            ),
+          ],
+          shadowColor: const Color.fromARGB(255, 223, 147, 236),
+          toolbarHeight: 70,
+        ),
+        body: buildPastBuilder());
   }
 }

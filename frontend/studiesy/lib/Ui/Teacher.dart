@@ -3,6 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'package:studiesy/Ui/Transcription.dart';
+import 'package:studiesy/models/databaseMethods.dart';
 
 import '../Authentication.dart';
 
@@ -33,7 +34,7 @@ class _TeacherScreenState extends State<TeacherScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         actions: [
           IconButton(
               onPressed: () {
@@ -122,6 +123,8 @@ class _TeacherScreenState extends State<TeacherScreen> {
     } else {
       setState(() => _isListening = false);
       _speech.stop();
+      DataBaseMethods().updateNotes('Physics', _text);
+      databaseReference.set("");
     }
   }
 }

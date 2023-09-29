@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 import 'package:studiesy/Authentication.dart';
+import 'package:studiesy/Ui/Teacher.dart';
 import 'package:studiesy/Ui/Widgets/froastedGlass.dart';
 
 class Authentication extends StatefulWidget {
@@ -36,7 +37,7 @@ class _AuthenticationState extends State<Authentication> {
               elevation: 10,
               borderRadius: BorderRadius.circular(30.sp),
               child: Container(
-                height: 75.h,
+                height: 65.h,
                 width: 90.w,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30.sp),
@@ -71,6 +72,7 @@ class AuthCard extends StatefulWidget {
 
 class _AuthCardState extends State<AuthCard> {
   int value = 0;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -116,6 +118,7 @@ class AuthForm extends StatefulWidget {
 }
 
 class _AuthFormState extends State<AuthForm> {
+  String text = '';
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
 
@@ -131,27 +134,28 @@ class _AuthFormState extends State<AuthForm> {
     return Column(
       children: [
         widget.value == 0
-            ? Padding(
+            ?Padding(
                 padding: EdgeInsets.all(2.w),
                 child: Text(
-                  'Login',
+                  'Student',
                   style: GoogleFonts.poppins(
                     fontSize: 24.sp,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
               )
-            : Padding(
+            :Padding(
                 padding: EdgeInsets.all(2.0.w),
                 child: Text(
-                  'SignIn',
+                  'Teacher',
                   style: GoogleFonts.poppins(
                     fontSize: 24.sp,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
               ),
-        Padding(
+       widget.value == 0
+       ?  Padding(
           padding: EdgeInsets.symmetric(horizontal: 10.w),
           child: Material(
             elevation: 2,
@@ -163,6 +167,33 @@ class _AuthFormState extends State<AuthForm> {
               validator: (email) =>
                   email != null && !EmailValidator.validate(email)
                       ? 'Enter a Valid email'
+                      : null,
+              decoration: InputDecoration(
+                  icon: const Icon(Icons.person),
+                  hintText: 'E-mail',
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(15.sp)),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                  ),
+                  fillColor: Colors.white,
+                  filled: true),
+            ),
+          ),
+        ):
+         Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10.w),
+          child: Material(
+            elevation: 2,
+            shadowColor: Colors.blue,
+            borderRadius: BorderRadius.circular(15.sp),
+            child: TextFormField(
+              controller: _email,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (email) =>
+                  email != null && !EmailValidator.validate(email)
+                      ? 'Enter a Valid secret key'
                       : null,
               decoration: InputDecoration(
                   icon: const Icon(Icons.person),
@@ -230,8 +261,23 @@ class _AuthFormState extends State<AuthForm> {
               )
             : MaterialButton(
                 onPressed: () {
-                  AuthService().registerWithEmailAndPassword(
-                      _email.text, _password.text, context);
+                  if (_email.text.isNotEmpty && _password.text.isNotEmpty) {
+                    // AuthService().registerWithEmailAndPassword(
+                    //     _email.text, _password.text, context);
+                    if (_email.text == 't123@vps.up' &&
+                        _password.text == 'teacher123') {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const TeacherScreen(),
+                        ),
+                      );
+                    } else {
+                      setState(() {
+                        text = 'Invalid Credentials';
+                      });
+                    }
+                  }
                 },
                 color: const Color.fromARGB(255, 148, 30, 208),
                 shape: BeveledRectangleBorder(
@@ -243,7 +289,7 @@ class _AuthFormState extends State<AuthForm> {
                 height: 7.h,
                 elevation: 10,
                 child: Text(
-                  'Sign Up',
+                  'Log In',
                   style: GoogleFonts.poppins(
                     fontSize: 20.sp,
                     color: Colors.white,
@@ -252,7 +298,12 @@ class _AuthFormState extends State<AuthForm> {
                 ),
               ),
         SizedBox(
-          height: 4.h,
+          height: 2.h,
+        ),
+        Text(
+          text,
+          style: GoogleFonts.poppins(
+              fontSize: 10.sp, fontWeight: FontWeight.w500, color: Colors.red),
         ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 10.w),
@@ -260,49 +311,49 @@ class _AuthFormState extends State<AuthForm> {
             thickness: 2,
           ),
         ),
-        SizedBox(
-          height: 2.h,
-        ),
-        widget.value == 0
-            ? Text(
-                'Google Login',
-                style: GoogleFonts.poppins(
-                  fontSize: 18.sp,
-                  color: const Color.fromARGB(255, 0, 0, 0),
-                  fontWeight: FontWeight.w700,
-                ),
-              )
-            : Text(
-                'Google Login',
-                style: GoogleFonts.poppins(
-                  fontSize: 18.sp,
-                  color: const Color.fromARGB(255, 0, 0, 0),
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5.w),
-          child: MaterialButton(
-            onPressed: () {
-              AuthService().signInogWithGoogle(context);
-            },
-            color: const Color.fromARGB(255, 255, 255, 255),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0.sp)),
-            elevation: 20,
-            child: Center(
-              child: Padding(
-                padding: EdgeInsets.all(1.0.w),
-                child: SizedBox(
-                  height: 4.h,
-                  child: Image.network(
-                    'https://img.icons8.com/fluency/48/google-logo.png',
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
+        // SizedBox(
+        //   height: 2.h,
+        // ),
+        // widget.value == 0
+        //     ? Text(
+        //         'Google Login',
+        //         style: GoogleFonts.poppins(
+        //           fontSize: 18.sp,
+        //           color: const Color.fromARGB(255, 0, 0, 0),
+        //           fontWeight: FontWeight.w700,
+        //         ),
+        //       )
+        //     : Text(
+        //         'Google Login',
+        //         style: GoogleFonts.poppins(
+        //           fontSize: 18.sp,
+        //           color: const Color.fromARGB(255, 0, 0, 0),
+        //           fontWeight: FontWeight.w700,
+        //         ),
+        //       ),
+        // Padding(
+        //   padding: EdgeInsets.symmetric(horizontal: 5.w),
+        //   child: MaterialButton(
+        //     onPressed: () {
+        //       AuthService().signInogWithGoogle(context);
+        //     },
+        //     color: const Color.fromARGB(255, 255, 255, 255),
+        //     shape: RoundedRectangleBorder(
+        //         borderRadius: BorderRadius.circular(15.0.sp)),
+        //     elevation: 20,
+        //     child: Center(
+        //       child: Padding(
+        //         padding: EdgeInsets.all(1.0.w),
+        //         child: SizedBox(
+        //           height: 4.h,
+        //           child: Image.network(
+        //             'https://img.icons8.com/fluency/48/google-logo.png',
+        //           ),
+        //         ),
+        //       ),
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }

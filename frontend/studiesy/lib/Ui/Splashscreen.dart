@@ -26,14 +26,14 @@ class _SplashScreenState extends State<SplashScreen> {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Color.fromARGB(248, 249, 163, 255),
-              Color.fromARGB(255, 255, 251, 238),
+              Color(0xFFBE03FD),
+              Color(0xFFBE03FD),
             ],
           ),
         ),
         child: Center(
           child: Image.asset(
-            'assets/Studiesy-logos_black.png',
+            'assets/icon.png',
             width: 300,
           ),
         ),
