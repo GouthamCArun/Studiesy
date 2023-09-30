@@ -8,8 +8,9 @@ import 'package:studiesy/models/databaseMethods.dart';
 import '../Authentication.dart';
 
 class TeacherScreen extends StatefulWidget {
-  const TeacherScreen({Key? key}) : super(key: key);
-
+  const TeacherScreen({Key? key, this.subject}) : super(key: key);
+  // ignore: prefer_typing_uninitialized_variables
+  final subject;
   @override
   // ignore: library_private_types_in_public_api
   _TeacherScreenState createState() => _TeacherScreenState();
@@ -34,7 +35,8 @@ class _TeacherScreenState extends State<TeacherScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        elevation: 0,
+        backgroundColor: const Color(0xFFBE03FD),
         actions: [
           IconButton(
               onPressed: () {
@@ -42,7 +44,7 @@ class _TeacherScreenState extends State<TeacherScreen> {
               },
               icon: const Icon(
                 Icons.logout,
-                color: Colors.purple,
+                color: Colors.white,
               ))
         ],
       ),
@@ -98,7 +100,6 @@ class _TeacherScreenState extends State<TeacherScreen> {
         onStatus: (val) => print('onStatus: $val'),
         onError: (val) => print('onError: $val'),
       );
-      print(available);
 
       if (available) {
         setState(() => _isListening = true);
@@ -123,7 +124,7 @@ class _TeacherScreenState extends State<TeacherScreen> {
     } else {
       setState(() => _isListening = false);
       _speech.stop();
-      DataBaseMethods().updateNotes('Physics', _text);
+      DataBaseMethods().updateNotes(widget.subject, _text);
       databaseReference.set("");
     }
   }

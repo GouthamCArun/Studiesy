@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 import 'package:studiesy/Authentication.dart';
-import 'package:studiesy/Ui/Teacher.dart';
 import 'package:studiesy/Ui/Widgets/froastedGlass.dart';
+
+import 'teacherNavigation.dart';
 
 class Authentication extends StatefulWidget {
   const Authentication({super.key});
@@ -37,7 +38,7 @@ class _AuthenticationState extends State<Authentication> {
               elevation: 10,
               borderRadius: BorderRadius.circular(30.sp),
               child: Container(
-                height: 65.h,
+                height: 70.h,
                 width: 90.w,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30.sp),
@@ -134,7 +135,7 @@ class _AuthFormState extends State<AuthForm> {
     return Column(
       children: [
         widget.value == 0
-            ?Padding(
+            ? Padding(
                 padding: EdgeInsets.all(2.w),
                 child: Text(
                   'Student',
@@ -144,7 +145,7 @@ class _AuthFormState extends State<AuthForm> {
                   ),
                 ),
               )
-            :Padding(
+            : Padding(
                 padding: EdgeInsets.all(2.0.w),
                 child: Text(
                   'Teacher',
@@ -154,61 +155,61 @@ class _AuthFormState extends State<AuthForm> {
                   ),
                 ),
               ),
-       widget.value == 0
-       ?  Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.w),
-          child: Material(
-            elevation: 2,
-            shadowColor: Colors.blue,
-            borderRadius: BorderRadius.circular(15.sp),
-            child: TextFormField(
-              controller: _email,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              validator: (email) =>
-                  email != null && !EmailValidator.validate(email)
-                      ? 'Enter a Valid email'
-                      : null,
-              decoration: InputDecoration(
-                  icon: const Icon(Icons.person),
-                  hintText: 'E-mail',
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(15.sp)),
-                  focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide.none,
+        widget.value == 0
+            ? Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                child: Material(
+                  elevation: 2,
+                  shadowColor: Colors.blue,
+                  borderRadius: BorderRadius.circular(15.sp),
+                  child: TextFormField(
+                    controller: _email,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (email) =>
+                        email != null && !EmailValidator.validate(email)
+                            ? 'Enter a Valid email'
+                            : null,
+                    decoration: InputDecoration(
+                        icon: const Icon(Icons.person),
+                        hintText: 'E-mail',
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(15.sp)),
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                        ),
+                        fillColor: Colors.white,
+                        filled: true),
                   ),
-                  fillColor: Colors.white,
-                  filled: true),
-            ),
-          ),
-        ):
-         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.w),
-          child: Material(
-            elevation: 2,
-            shadowColor: Colors.blue,
-            borderRadius: BorderRadius.circular(15.sp),
-            child: TextFormField(
-              controller: _email,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              validator: (email) =>
-                  email != null && !EmailValidator.validate(email)
-                      ? 'Enter a Valid secret key'
-                      : null,
-              decoration: InputDecoration(
-                  icon: const Icon(Icons.person),
-                  hintText: 'E-mail',
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(15.sp)),
-                  focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide.none,
+                ),
+              )
+            : Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                child: Material(
+                  elevation: 2,
+                  shadowColor: Colors.blue,
+                  borderRadius: BorderRadius.circular(15.sp),
+                  child: TextFormField(
+                    controller: _email,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (email) =>
+                        email != null && !EmailValidator.validate(email)
+                            ? 'Enter a Valid secret key'
+                            : null,
+                    decoration: InputDecoration(
+                        icon: const Icon(Icons.person),
+                        hintText: 'E-mail',
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(15.sp)),
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                        ),
+                        fillColor: Colors.white,
+                        filled: true),
                   ),
-                  fillColor: Colors.white,
-                  filled: true),
-            ),
-          ),
-        ),
+                ),
+              ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 2.h),
           child: Material(
@@ -269,7 +270,7 @@ class _AuthFormState extends State<AuthForm> {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const TeacherScreen(),
+                          builder: (context) => const TeacherNavigation(),
                         ),
                       );
                     } else {
@@ -311,49 +312,44 @@ class _AuthFormState extends State<AuthForm> {
             thickness: 2,
           ),
         ),
-        // SizedBox(
-        //   height: 2.h,
-        // ),
-        // widget.value == 0
-        //     ? Text(
-        //         'Google Login',
-        //         style: GoogleFonts.poppins(
-        //           fontSize: 18.sp,
-        //           color: const Color.fromARGB(255, 0, 0, 0),
-        //           fontWeight: FontWeight.w700,
-        //         ),
-        //       )
-        //     : Text(
-        //         'Google Login',
-        //         style: GoogleFonts.poppins(
-        //           fontSize: 18.sp,
-        //           color: const Color.fromARGB(255, 0, 0, 0),
-        //           fontWeight: FontWeight.w700,
-        //         ),
-        //       ),
-        // Padding(
-        //   padding: EdgeInsets.symmetric(horizontal: 5.w),
-        //   child: MaterialButton(
-        //     onPressed: () {
-        //       AuthService().signInogWithGoogle(context);
-        //     },
-        //     color: const Color.fromARGB(255, 255, 255, 255),
-        //     shape: RoundedRectangleBorder(
-        //         borderRadius: BorderRadius.circular(15.0.sp)),
-        //     elevation: 20,
-        //     child: Center(
-        //       child: Padding(
-        //         padding: EdgeInsets.all(1.0.w),
-        //         child: SizedBox(
-        //           height: 4.h,
-        //           child: Image.network(
-        //             'https://img.icons8.com/fluency/48/google-logo.png',
-        //           ),
-        //         ),
-        //       ),
-        //     ),
-        //   ),
-        // ),
+        SizedBox(
+          height: 2.h,
+        ),
+        widget.value == 0
+            ? Text(
+                'Google Login',
+                style: GoogleFonts.poppins(
+                  fontSize: 18.sp,
+                  color: const Color.fromARGB(255, 0, 0, 0),
+                  fontWeight: FontWeight.w700,
+                ),
+              )
+            : Container(),
+        widget.value == 0
+            ? Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5.w),
+                child: MaterialButton(
+                  onPressed: () {
+                    AuthService().signInogWithGoogle(context);
+                  },
+                  color: const Color.fromARGB(255, 255, 255, 255),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0.sp)),
+                  elevation: 20,
+                  child: Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(1.0.w),
+                      child: SizedBox(
+                        height: 4.h,
+                        child: Image.network(
+                          'https://img.icons8.com/fluency/48/google-logo.png',
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              )
+            : SizedBox()
       ],
     );
   }

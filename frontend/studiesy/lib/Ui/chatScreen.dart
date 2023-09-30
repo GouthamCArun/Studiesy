@@ -1,8 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:sizer/sizer.dart';
-import 'dart:async';
 
 import 'package:studiesy/Ui/audio.dart';
 import 'package:studiesy/models/databaseMethods.dart';
@@ -39,10 +40,13 @@ class _ConversationScreenState extends State<ConversationScreen> {
 
   Widget chatMessageList() {
     return Stack(children: [
-      Center(
-        child: Image.network(
-          'https://img.freepik.com/free-vector/kids-studying-from-home-concept-illustration_114360-2153.jpg?w=740&t=st=1695441819~exp=1695442419~hmac=1c1f2c7698bfb93fad7a4f266aedc5cbee5f799f7d71b0c9ec1df5541c970b02',
-          opacity: const AlwaysStoppedAnimation(.5),
+      BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+        child: Center(
+          child: Image.network(
+            'https://img.freepik.com/free-vector/kids-studying-from-home-concept-illustration_114360-2153.jpg?w=740&t=st=1695441819~exp=1695442419~hmac=1c1f2c7698bfb93fad7a4f266aedc5cbee5f799f7d71b0c9ec1df5541c970b02',
+            opacity: const AlwaysStoppedAnimation(.5),
+          ),
         ),
       ),
       Column(

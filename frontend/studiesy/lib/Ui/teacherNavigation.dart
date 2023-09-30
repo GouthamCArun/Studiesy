@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:molten_navigationbar_flutter/molten_navigationbar_flutter.dart';
-import 'package:studiesy/Ui/HomeScreen.dart';
 import 'package:studiesy/Ui/profile.dart';
+import 'package:studiesy/Ui/teachDash.dart';
 
-class NavigationPage extends StatefulWidget {
-  const NavigationPage({super.key});
+class TeacherNavigation extends StatefulWidget {
+  const TeacherNavigation({super.key});
 
   @override
-  State<NavigationPage> createState() => _NavigationPageState();
+  State<TeacherNavigation> createState() => _TeacherNavigationState();
 }
 
-class _NavigationPageState extends State<NavigationPage> {
+class _TeacherNavigationState extends State<TeacherNavigation> {
   int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
-    List pages = [const HomeScreen(), const ProfileScreen()];
+    List pages = [const TeacherDash(), const ProfileScreen()];
     return Scaffold(
       bottomNavigationBar: MoltenBottomNavigationBar(
         domeCircleColor: const Color.fromARGB(255, 154, 91, 232),

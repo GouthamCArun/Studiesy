@@ -17,13 +17,13 @@ class DataBaseMethods {
         .get()
         .then((value) => {
               snapshotUserInfo = value,
-              print(snapshotUserInfo.docs[0].data().toString()),
-              db
-                  .collection('Notes')
-                  .doc(subject)
-                  .update({'transcribe': transcribe}),
+              db.collection('Notes').doc(subject).update({
+                'transcribe':
+                    snapshotUserInfo.docs[0]['transcribe'] + transcribe
+              }),
             });
-    String url = 'https://ihrd1-production.up.railway.app//summary';
+    String url = 'https://ihrd1-production.up.railway.app/summary';
+    Future.delayed(const Duration(seconds: 30));
     final result = await http.post(
       Uri.parse(url),
       headers: <String, String>{
@@ -33,7 +33,7 @@ class DataBaseMethods {
         "subject": subject,
       }),
     );
- if (result.statusCode == 200) {
+    if (result.statusCode == 200) {
       // If the server did return a 201 CREATED result,
       // then parse the JSON.
       print(jsonDecode(result.body));
@@ -88,7 +88,6 @@ class DataBaseMethods {
       throw Exception('Failed to create album');
     }
   }
-  fetchAudio(){
-    
-  }
+
+  fetchAudio() {}
 }

@@ -12,6 +12,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   late User _user;
+  @override
   void initState() {
     super.initState();
     _user = _auth.currentUser!;
@@ -90,15 +91,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           // Perform your logout logic here
                           // For example, you can clear user session and navigate to login screen
                           Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Authentication()));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Authentication(),
+                            ),
+                          );
                         },
                         style: ElevatedButton.styleFrom(
-                            primary: Colors
-                                .white, // Set the background color to white
-                            onPrimary:
-                                Colors.black, // Set the text color to black
+                            foregroundColor: Colors.black, backgroundColor: Colors
+                                .white, // Set the text color to black
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),
                             ),
@@ -119,7 +120,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ],
           ),
         ),
-     ),
-);
-}
+      ),
+    );
+  }
 }

@@ -1,7 +1,10 @@
+import 'dart:ui';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
+import 'package:studiesy/Ui/Widgets/froastedGlass.dart';
 
 class TextMessage extends StatelessWidget {
   const TextMessage({
@@ -36,7 +39,7 @@ class AdjustableContainer extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 1.4.h, vertical: 1.2.h),
         decoration: BoxDecoration(
           color: Colors.deepPurpleAccent[200]!
-              .withOpacity(message.get('isSender') ? 0.80 : 0.2),
+              .withOpacity(message.get('isSender') ? 0.80 : 0.1),
           borderRadius: BorderRadius.circular(20.sp),
         ),
         child: Wrap(
@@ -46,6 +49,7 @@ class AdjustableContainer extends StatelessWidget {
               message.get('message'),
               // ignore: deprecated_member_use
               style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w500,
                 color: message.get('isSender')
                     ? Colors.white
                     : Theme.of(context).textTheme.bodyLarge!.color,

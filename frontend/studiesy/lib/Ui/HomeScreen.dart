@@ -225,6 +225,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 borderRadius: BorderRadius.circular(20.sp)),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Padding(
                                   padding: EdgeInsets.only(
@@ -286,7 +287,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),
                                 const Align(
-                                  alignment: Alignment.bottomCenter,
+                                  alignment: Alignment.center,
                                   child: Icon(
                                     Icons.arrow_forward_ios,
                                     color: Colors.white,

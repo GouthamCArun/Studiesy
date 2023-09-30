@@ -30,7 +30,6 @@ class Message extends StatelessWidget {
             width: 2.w,
           ),
           TextMessage(message: message),
-          
         ],
       ),
     );

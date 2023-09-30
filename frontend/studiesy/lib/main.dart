@@ -21,9 +21,10 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final user = auth.currentUser!;
     return Sizer(
       builder: (BuildContext context, Orientation orientation,
           DeviceType deviceType) {
@@ -37,7 +38,11 @@ class MyApp extends StatelessWidget {
                   child: CircularProgressIndicator(),
                 );
               } else if (snapshot.hasData) {
-                return const SplashScreen(loggedInSplash: 1);
+                if (user.email=="t123@vps.up") {
+                  return const SplashScreen(loggedInSplash: 2);
+                }else{
+                  return const SplashScreen(loggedInSplash: 1);
+                }
               } else {
                 return const SplashScreen(loggedInSplash: 0);
               }

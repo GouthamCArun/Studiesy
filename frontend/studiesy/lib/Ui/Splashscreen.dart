@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:studiesy/Ui/Auth.dart';
 import 'package:studiesy/Ui/navigation.dart';
+import 'package:studiesy/Ui/teacherNavigation.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key, required this.loggedInSplash});
@@ -50,11 +51,20 @@ class _SplashScreenState extends State<SplashScreen> {
             builder: (context) => const Authentication(),
           ),
         );
-      } else {
+      } 
+      else if(widget.loggedInSplash ==1)
+      {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
             builder: (context) => const NavigationPage(),
+          ),
+        );
+      }else{
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const TeacherNavigation(),
           ),
         );
       }
