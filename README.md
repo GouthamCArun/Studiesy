@@ -33,7 +33,7 @@ This project was created for Mobile App Development challenge
 </div>
 
 ## For APK click here 👇
-"[https://drive.google.com/file/d/1tgaNINw4XmQR1X5UGOymutfpHiTmQ7VU/view?usp=sharing](https://drive.google.com/drive/u/0/my-drive)"
+"https://drive.google.com/file/d/1tgaNINw4XmQR1X5UGOymutfpHiTmQ7VU/view?usp=sharing"
 
 
 ## The Problem We Solve: "Education Accessibility: Develop inclusive applications that utilize generative AI to make education more accessible to individuals with disabilities, ensuring equal learning opportunities for all."
