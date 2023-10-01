@@ -33,9 +33,8 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
         ),
         child: Center(
-          child: Image.asset(
-            'assets/icon.png',
-            width: 300,
+          child: Image.network(
+            'https://firebasestorage.googleapis.com/v0/b/studiesy.appspot.com/o/icon.png?alt=media&token=443d87d3-e6d8-42dd-ab3c-6c2dfb4cff17&_gl=1*1ecrs0v*_ga*MzE1MTYxMjk2LjE2NzkxNDI3OTE.*_ga_CW55HF8NVT*MTY5NjA1MjU1Ni42MS4xLjE2OTYwNTMwNjkuNjAuMC4w',
           ),
         ),
       ),
@@ -51,16 +50,14 @@ class _SplashScreenState extends State<SplashScreen> {
             builder: (context) => const Authentication(),
           ),
         );
-      } 
-      else if(widget.loggedInSplash ==1)
-      {
+      } else if (widget.loggedInSplash == 1) {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
             builder: (context) => const NavigationPage(),
           ),
         );
-      }else{
+      } else {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(

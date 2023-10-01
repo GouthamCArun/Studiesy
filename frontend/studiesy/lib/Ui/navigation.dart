@@ -5,7 +5,7 @@ import 'package:studiesy/Ui/profile.dart';
 
 class NavigationPage extends StatefulWidget {
   const NavigationPage({super.key});
-
+  static const route = '/dashboard';
   @override
   State<NavigationPage> createState() => _NavigationPageState();
 }

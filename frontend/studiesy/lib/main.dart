@@ -6,15 +6,15 @@ import 'package:sizer/sizer.dart';
 import 'package:studiesy/Ui/Splashscreen.dart';
 import 'package:studiesy/firebase_options.dart';
 
-import 'Ui/tts.dart';
 
+import 'models/notifications.dart';
+final navigatorKey = GlobalKey<NavigatorState>();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  TextToSpeech.initTTS();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-
+  await FirebaseApi().initNotification();
   runApp(const MyApp());
 }
 
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final FirebaseAuth auth = FirebaseAuth.instance;
-    final user = auth.currentUser!;
+    final user = auth.currentUser;
     return Sizer(
       builder: (BuildContext context, Orientation orientation,
           DeviceType deviceType) {
@@ -38,9 +38,9 @@ class MyApp extends StatelessWidget {
                   child: CircularProgressIndicator(),
                 );
               } else if (snapshot.hasData) {
-                if (user.email=="t123@vps.up") {
+                if (user!.email == "t123@vps.up") {
                   return const SplashScreen(loggedInSplash: 2);
-                }else{
+                } else {
                   return const SplashScreen(loggedInSplash: 1);
                 }
               } else {

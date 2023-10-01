@@ -19,7 +19,8 @@ class DataBaseMethods {
               snapshotUserInfo = value,
               db.collection('Notes').doc(subject).update({
                 'transcribe':
-                    snapshotUserInfo.docs[0]['transcribe'] + transcribe
+                    snapshotUserInfo.docs[0]['transcribe'] + transcribe,
+          
               }),
             });
     String url = 'https://ihrd1-production.up.railway.app/summary';
@@ -64,8 +65,6 @@ class DataBaseMethods {
       print(e.toString());
     });
 
-    Future.delayed(const Duration(seconds: 10));
-
     final response = await http.post(
       Uri.parse('https://web-production-4ed5.up.railway.app/bot'),
       headers: <String, String>{
@@ -89,5 +88,34 @@ class DataBaseMethods {
     }
   }
 
-  fetchAudio() {}
+  fetchAudio(subject) async {
+    QuerySnapshot snapshotUserInfo;
+    String summary = '';
+    await db.collection('Notes').where('name', isEqualTo: subject).get().then(
+        (value) => {
+              snapshotUserInfo = value,
+              summary = snapshotUserInfo.docs[0].get('summary')
+            });
+    final audioResult = await http.post(
+      Uri.parse('https://ihrd1-production.up.railway.app/voice'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        "sentence": summary,
+        "subject": subject,
+      }),
+    );
+    if (audioResult.statusCode == 200) {
+      // If the server did return a 201 CREATED response,
+      // then parse the JSON.
+      print(
+        jsonDecode(audioResult.body),
+      );
+    } else {
+      // If the server did not return a 201 CREATED response,
+      // then throw an exception.
+      throw Exception('Failed to create album');
+    }
+  }
 }

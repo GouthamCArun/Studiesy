@@ -1,19 +1,50 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
+
+import '../models/databaseMethods.dart';
 
 class AudioScreen extends StatefulWidget {
-  const AudioScreen({super.key});
-
+  const AudioScreen({super.key, required this.subject});
+  final subject;
   @override
   State<AudioScreen> createState() => _AudioScreenState();
 }
 
 class _AudioScreenState extends State<AudioScreen> {
   AudioPlayer player = AudioPlayer();
-
+  String url = '';
+  Stream? notes;
   @override
   void initState() {
-    
+    DataBaseMethods().getNotes().then((val) {
+      setState(() {
+        notes = val;
+      });
+    });
+    if (widget.subject == "Chemistry") {
+      setState(() {
+        url =
+            'https://firebasestorage.googleapis.com/v0/b/studiesy.appspot.com/o/test%2FChemistry.mp3?alt=media&token=cede807b-7883-4247-a1a5-d01c74eb63b4&_gl=1*1se6257*_ga*NzcyOTg4NjkuMTY4MjEwNDExMw..*_ga_CW55HF8NVT*MTY5NjA1NDEyOC44Mi4xLjE2OTYwNTQ2MjcuNTguMC4w';
+      });
+    } else if (widget.subject == "Physics") {
+      setState(() {
+        url =
+            'https://firebasestorage.googleapis.com/v0/b/studiesy.appspot.com/o/test%2FPhysics.mp3?alt=media&token=8bb0108e-f371-47dc-8d8f-99405b96394b&_gl=1*1cbah9s*_ga*NzcyOTg4NjkuMTY4MjEwNDExMw..*_ga_CW55HF8NVT*MTY5NjA1NDEyOC44Mi4xLjE2OTYwNTQ0NzEuMzguMC4w';
+      });
+    } else if (widget.subject == 'Mathematics') {
+      setState(() {
+        url =
+            'https://firebasestorage.googleapis.com/v0/b/studiesy.appspot.com/o/test%2FMathematics.mp3?alt=media&token=9c63c255-6552-46bd-afe3-3746a062351f&_gl=1*1v6wlc2*_ga*NzcyOTg4NjkuMTY4MjEwNDExMw..*_ga_CW55HF8NVT*MTY5NjA1NDEyOC44Mi4xLjE2OTYwNTQ1NTAuNjAuMC4w';
+      });
+    } else {
+      setState(() {
+        url =
+            'https://firebasestorage.googleapis.com/v0/b/studiesy.appspot.com/o/test%2FEnglish.mp3?alt=media&token=a1d6cfb5-02c0-4252-a1ac-bf278af0c723&_gl=1*azjmr8*_ga*NzcyOTg4NjkuMTY4MjEwNDExMw..*_ga_CW55HF8NVT*MTY5NjA1NDEyOC44Mi4xLjE2OTYwNTQ1ODIuMjguMC4w';
+      });
+    }
+
+    print(url);
     super.initState();
   }
 
@@ -48,13 +79,12 @@ class _AudioScreenState extends State<AudioScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 250.0),
+              padding: EdgeInsets.only(top: 30.h),
               child: ElevatedButton(
                 onPressed: () {
                   togglePlayPause();
                   if (isPlaying) {
-                    playMusic(
-                        "https://firebasestorage.googleapis.com/v0/b/studiesy.appspot.com/o/test%2Fwelcome.mp3?alt=media&token=5f1c9dfa-72f2-4721-9dff-c4c2d468fa2c&_gl=1*gnzbty*_ga*MTYxNTI4NTkyMy4xNjc4OTUxMzcy*_ga_CW55HF8NVT*MTY5NTk5NTQ3My4yNS4x.LjE2OTU5OTU4OTUuNTcuMC4w");
+                    playMusic(url);
                   } else {
                     player.pause();
                   }

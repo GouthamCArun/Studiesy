@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:sizer/sizer.dart';
 import 'package:studiesy/Ui/Auth.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -32,29 +34,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
           physics: const NeverScrollableScrollPhysics(),
           child: Column(
             children: [
-              const Padding(
-                padding: EdgeInsets.all(10.0),
+              Padding(
+                padding: EdgeInsets.all(10.0.sp),
                 child: Center(
                   child: Text(
                     'Profile',
-                    style: TextStyle(
-                        fontSize: 30,
-                        color: Color(0xFFBE03FD),
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'poppins'),
+                    style: GoogleFonts.poppins(
+                      fontSize: 30.sp,
+                      color: const Color(0xFFBE03FD),
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
-              const Center(
+              Center(
                 child: CircleAvatar(
-                  radius: 80,
-                  backgroundImage: AssetImage(
+                  radius: 70.sp,
+                  backgroundImage: const AssetImage(
                       'assets/man2.png'), // Use backgroundImage for AssetImage
                 ),
               ),
+              SizedBox(
+                height: 1.h,
+              ),
               Container(
-                height: 500,
-                width: 500,
+                height: 60.h,
+                width: 100.w,
                 decoration: const BoxDecoration(
                   color: Color(0xFFBE03FD),
                   borderRadius: BorderRadius.only(
@@ -67,23 +72,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(20.0),
+                        padding: const EdgeInsets.all(10.0),
                         child: Text(
                           'Email: ${_user.email}',
-                          style: const TextStyle(
-                              fontSize: 24,
-                              color: Colors.white,
-                              fontFamily: 'poppins'),
+                          style: GoogleFonts.poppins(
+                            fontSize: 20.sp,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.all(20.0),
+                      Padding(
+                        padding: EdgeInsets.all(10.0.sp),
                         child: Text(
                           'Class: 7 B',
-                          style: TextStyle(
-                              fontSize: 24,
-                              color: Colors.white,
-                              fontFamily: 'poppins'),
+                          style: GoogleFonts.poppins(
+                            fontSize: 20.sp,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                       ElevatedButton(
@@ -98,8 +103,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.black, backgroundColor: Colors
-                                .white, // Set the text color to black
+                            foregroundColor: Colors.black,
+                            backgroundColor:
+                                Colors.white, // Set the text color to black
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),
                             ),

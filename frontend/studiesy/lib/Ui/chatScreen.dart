@@ -132,6 +132,14 @@ class _ConversationScreenState extends State<ConversationScreen> {
     );
   }
 
+  String summarytext = '';
+
+  @override
+  void initState() {
+    dataBaseMethods.fetchAudio(widget.subject);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -152,7 +160,10 @@ class _ConversationScreenState extends State<ConversationScreen> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const AudioScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => AudioScreen(
+                            subject: widget.subject,
+                          )),
                 );
               },
               icon: const Icon(Icons.speaker),
