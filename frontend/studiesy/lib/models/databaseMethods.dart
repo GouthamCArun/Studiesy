@@ -23,7 +23,7 @@ class DataBaseMethods {
           
               }),
             });
-    String url = 'https://ihrd1-production.up.railway.app/summary';
+    String url = 'https://web-production-caa9.up.railway.app/summary';
     Future.delayed(const Duration(seconds: 30));
     final result = await http.post(
       Uri.parse(url),
@@ -66,7 +66,7 @@ class DataBaseMethods {
     });
 
     final response = await http.post(
-      Uri.parse('https://web-production-4ed5.up.railway.app/bot'),
+      Uri.parse('https://web-production-9a03d.up.railway.app/bot'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -97,7 +97,7 @@ class DataBaseMethods {
               summary = snapshotUserInfo.docs[0].get('summary')
             });
     final audioResult = await http.post(
-      Uri.parse('https://ihrd1-production.up.railway.app/voice'),
+      Uri.parse('https://web-production-caa9.up.railway.app/voice'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
